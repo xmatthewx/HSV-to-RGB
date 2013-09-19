@@ -6,6 +6,8 @@
  * @args: 0 <= h, s, v <= 1
  * @ex: HSVtoRGB(0.5, 0.5, 0.5);
  *
+ * @credit: http://stackoverflow.com/questions/17242144/javascript-convert-hsb-hsv-color-to-rgb-accurately/17243070#17243070
+ *
  */
  
 function HSVtoRGB(h, s, v) {
