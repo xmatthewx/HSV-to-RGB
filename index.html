@@ -14,12 +14,12 @@
     </head>
     <body>
 
-        <h1>HSV for Web Color</h1>
+        <h1>HSB for Web Color</h1>
 
         <section id="swatches">
             <section id="hue" class="row"><strong>Hue</strong></section>
             <section id="saturation" class="row"><strong>Saturation</strong></section>
-            <section id="value" class="row"><strong>Value</strong></section>
+            <section id="brightness" class="row"><strong>Brightness</strong></section>
         </section>
         
         <p id="tooltip">HSB & RGB</p>
@@ -27,9 +27,11 @@
         <form>
             <div><label>hue</label><input id="h" type="range" min="0" max="1" step=".1" value=".9"></div>
             <div><label>saturation</label><input id="s" type="range" min="0" max="1" step=".1" value=".9"></div>
-            <div><label>value</label><input id="v" type="range" min="0" max="1" step=".1" value=".9"></div>            
+            <div><label>brightness</label><input id="b" type="range" min="0" max="1" step=".1" value=".9"></div>            
         </form>
         
+        <a href="https://github.com/xmatthewx/HSV-to-RGB"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 

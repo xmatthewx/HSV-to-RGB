@@ -21,9 +21,15 @@ h1 {
     height:100px; width:8.5%;
     margin:0 0.5% 0 0;
     background:#f0f;
+    border:1px transparent solid;
+    border-width:0 0 3px 0;
     border-radius:2px;
     transition-property: background;
     transition-duration: .2s;
+}
+
+.swatch.active {
+    border-color:#fff;
 }
 
 strong { /* row labels */

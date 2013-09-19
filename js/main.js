@@ -1,32 +1,31 @@
-
 /**
  * convert HSV to RGB
  *
- * @desc: easily modify hue, saturation, value for display
+ * @desc: easily modify hue, saturation, brightness for display
  * @args: 0 <= h, s, v <= 1
  * @ex: HSVtoRGB(0.5, 0.5, 0.5);
  *
  * @credit: http://stackoverflow.com/questions/17242144/javascript-convert-hsb-hsv-color-to-rgb-accurately/17243070#17243070
  *
  */
- 
-function HSVtoRGB(h, s, v) {
+
+function HSVtoRGB(h, s, br) {
     var r, g, b, i, f, p, q, t;
-    if (h && s === undefined && v === undefined) {
-        s = h.s, v = h.v, h = h.h;
+    if (h && s === undefined && br === undefined) {
+        s = h.s, br = h.br, h = h.h;
     }
     i = Math.floor(h * 6);
     f = h * 6 - i;
-    p = v * (1 - s);
-    q = v * (1 - f * s);
-    t = v * (1 - (1 - f) * s);
+    p = br * (1 - s);
+    q = br * (1 - f * s);
+    t = br * (1 - (1 - f) * s);
     switch (i % 6) {
-        case 0: r = v, g = t, b = p; break;
-        case 1: r = q, g = v, b = p; break;
-        case 2: r = p, g = v, b = t; break;
-        case 3: r = p, g = q, b = v; break;
-        case 4: r = t, g = p, b = v; break;
-        case 5: r = v, g = p, b = q; break;
+        case 0: r = br, g = t, b = p; break;
+        case 1: r = q, g = br, b = p; break;
+        case 2: r = p, g = br, b = t; break;
+        case 3: r = p, g = q, b = br; break;
+        case 4: r = t, g = p, b = br; break;
+        case 5: r = br, g = p, b = q; break;
     }
     return {
         r: Math.floor(r * 255),
@@ -34,6 +33,16 @@ function HSVtoRGB(h, s, v) {
         b: Math.floor(b * 255)
     };
 }
+
+
+
+/**
+ * detauls
+ *
+ */
+var hue = 0.9, /* 0 to 1 */
+     sat = 0.4, 
+     bri = 1; 
 
 
 /**
@@ -57,42 +66,43 @@ function createSwatches(){
  *
  */
 
-// defaults
-var hue = 0.5, /* 0 to 1 */
-    sat = 0.4, 
-    val = 1; 
-
 
 function colorSwatches(){
     
     // hue gradient
     $('#hue .swatch').each(function(i){
         var hNew = i/10;
-        setSwatch(this,hNew,sat,val);
+        setSwatch(this,hNew,sat,bri);
     });
     
     // saturation gradient
     $('#saturation .swatch').each(function(i){
         var sNew = i/10;
-        setSwatch(this,hue,sNew,val);
+        setSwatch(this,hue,sNew,bri);
     });
     
-    // value gradient
-    $('#value .swatch').each(function(i){
-        var vNew = i/10;
-        setSwatch(this,hue,sat,vNew);
+    // brightness gradient
+    $('#brightness .swatch').each(function(i){
+        var bNew = i/10;
+        setSwatch(this,hue,sat,bNew);
     });
+    
     
 };
 
-function setSwatch(el,h,s,v) {
+function setSwatch(el,h,s,b) {
     
-    var rgb = HSVtoRGB(h,s,v);
+    var rgb = HSVtoRGB(h,s,b);
     var rgbCSS = 'RGB(' + rgb.r + ', ' + rgb.g + ', ' + rgb.b + ')'
-    var tooltip =  'HSV(' + h + ', ' + s + ', ' + v + ')\n' + rgbCSS;
+    var tooltip =  'HSV(' + h + ', ' + s + ', ' + b + ')\n' + rgbCSS;
 
-    $(el).css('background',rgbCSS)
-        .data('colors',tooltip);
+    $(el).css('background',rgbCSS);
+    var vals = $(el).data();
+        vals.hue = h;
+        vals.sat = s;
+        vals.bri = b;
+        vals.colors = tooltip;
+        // console.log('hsv: ',h,s,b)
 }
 
 
@@ -125,7 +135,7 @@ $('body').on('mouseover','.swatch',function(event){
 function setForm(){
     $('#h').val(hue);
     $('#s').val(sat);
-    $('#v').val(val);
+    $('#b').val(bri);
 }
 
 // on change
@@ -141,17 +151,35 @@ $('form').on('change','input',function(){
             sat = this.value;
             $('#saturation strong').show().delay(1000).fadeOut('slow');
             break;
-        case 'v':
-            val = this.value;
-            $('#value strong').show().delay(1000).fadeOut('slow');
+        case 'b':
+            bri = this.value;
+            $('#brightness strong').show().delay(1000).fadeOut('slow');
             break;
         default:
             console.log('broken');
     }
     colorSwatches();
+    highlight();
 
 });
 
+function highlight(){
+        
+    $('.swatch').each( function(){
+        var el = $(this);
+        var vals = el.data();
+        // console.log(vals.hue);
+
+        if ( vals.sat == sat && vals.bri == bri && vals.hue == hue ) { 
+            // console.log('match: ', match.s, vals.sat);
+            el.addClass('active'); 
+        } else { 
+            el.removeClass('active'); 
+        }
+        
+    });
+    
+}
 
 /**
  * make it so
