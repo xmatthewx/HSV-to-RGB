@@ -1,0 +1,87 @@
+body { 
+    padding-top:1em; 
+    background:#efefef; 
+    background:#222; 
+    color:white;
+    }
+
+h1 {
+    color:#666;
+    text-align:center;
+}
+
+.row {
+    display:block;
+    position:relative; /* capture width of absolutely positioned child elements */
+    margin:1px 2%;
+}
+
+.swatch { 
+    display:inline-block;
+    height:100px; width:8.5%;
+    margin:0 0.5% 0 0;
+    background:#f0f;
+    border-radius:2px;
+    transition-property: background;
+    transition-duration: .2s;
+}
+
+strong { /* row labels */
+    display:none;
+    position: absolute;
+    left: 50%;
+    width: 200px;
+    margin: 25px 0 0 -100px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    text-align: center;
+    background: rgba(0,0,0,0.4);
+    border-radius:2px;
+}
+
+form {
+    margin:1em 5% 1em auto;
+    width:350px;
+    padding:.75em 0 .5em;
+    text-align:right;
+    background:#333;
+    border-radius:2px;
+}
+    @media only screen and (max-width:650px) {
+        form { width:96%; margin:1em 2%; }
+    }
+
+form div { 
+    display:block; 
+    margin:.5em 0; 
+}
+
+input {
+    margin:5px 2em 0 .25em;
+    width:50%;
+    background:#eee;
+}
+
+label {
+    vertical-align:5px;
+}
+
+    
+#tooltip {
+    display:none;
+    position:absolute;
+    top:50%; left:50%;
+    width:160px; margin-left:-80px;
+    padding:.5em 20px;
+    text-align: center;
+    color: #eee;    
+    background:rgba(0,0,0,0.5);
+    border-radius:2px;
+    transition-property: left,top;
+    transition-duration: 1s,1s;
+    
+}
+
+

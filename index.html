@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+
+        <h1>HSV Scale for Web Color</h1>
+
+        <section id="swatches">
+            <section id="hue" class="row"><strong>Hue</strong></section>
+            <section id="saturation" class="row"><strong>Saturation</strong></section>
+            <section id="value" class="row"><strong>Value</strong></section>
+        </section>
+        
+        <p id="tooltip">HSB & RGB</p>
+
+        <form>
+            <div><label>hue</label><input id="h" type="range" min="0" max="1" step=".1" value=".9"></div>
+            <div><label>saturation</label><input id="s" type="range" min="0" max="1" step=".1" value=".9"></div>
+            <div><label>value</label><input id="v" type="range" min="0" max="1" step=".1" value=".9"></div>            
+        </form>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+        <script src="js/main.js"></script>
+    </body>
+</html>
